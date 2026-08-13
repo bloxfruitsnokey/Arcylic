@@ -58,7 +58,7 @@ button.Font = Enum.Font.GothamBold
 button.Parent = frame
 
 button.MouseButton1Click:Connect(function()
-    setclipboard("scriptpastebin")
+    setclipboard("scriptpastebin arc hub")
 
     button.Text = "LINK COPIED!"
 
