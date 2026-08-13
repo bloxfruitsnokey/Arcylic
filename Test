@@ -1,0 +1,53 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "ARCHubUpdate"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 160)
+frame.Position = UDim2.new(0.5, -150, 0.5, -80)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+frame.BorderSizePixel = 0
+frame.Parent = gui
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 45)
+title.BackgroundTransparency = 1
+title.Text = "ARC Hub - Update"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextSize = 20
+title.Font = Enum.Font.GothamBold
+title.Parent = frame
+
+local subtitle = Instance.new("TextLabel")
+subtitle.Size = UDim2.new(1, 0, 0, 30)
+subtitle.Position = UDim2.new(0, 0, 0, 42)
+subtitle.BackgroundTransparency = 1
+subtitle.Text = "Copy new script/loader"
+subtitle.TextColor3 = Color3.fromRGB(180, 180, 180)
+subtitle.TextSize = 15
+subtitle.Font = Enum.Font.Gotham
+subtitle.Parent = frame
+
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0, 240, 0, 45)
+button.Position = UDim2.new(0.5, -120, 0, 95)
+button.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+button.Text = "COPY"
+button.TextColor3 = Color3.fromRGB(255, 255, 255)
+button.TextSize = 16
+button.Font = Enum.Font.GothamBold
+button.Parent = frame
+
+button.MouseButton1Click:Connect(function()
+    setclipboard("https://scriptpastebin.com")
+
+    button.Text = "COPIED!"
+
+    task.wait(1.5)
+
+    button.Text = "COPY"
+end)
