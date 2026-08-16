@@ -13,7 +13,7 @@ pcall(function()
 		CU.ApplyDamageHighlight = function() end;
 	end;
 end);
-loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxfruitsnokey/Arcylic/refs/heads/main/ARC/combat.luau"))()
+loadstring(game:HttpGet("https://pastefy.app/sH58OT30/raw"))()
 local Y = game.Players;
 local d = Y.LocalPlayer;
 local R = d.Character.HumanoidRootPart;
