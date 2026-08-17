@@ -10596,7 +10596,7 @@ do
 	Btn.AnchorPoint = Vector2.new(0, 1)
 	Btn.Image = "rbxassetid://126331270110394"
 	Btn.Size = UDim2.new(0, 50, 0, 50)
-	Btn.Position = UDim2.new(0.01, 0, 0.99, 0)
+	Btn.Position = UDim2.new(0.01, 0, 0.30, 0)
 	Btn.AutoButtonColor = true
 
 	local corner = Instance.new("UICorner", Btn)
