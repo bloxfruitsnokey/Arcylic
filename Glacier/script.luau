@@ -1770,7 +1770,7 @@ local Arcylic = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxf
 
 local Library, Window;
 do
-	local instance = Arcylic.new("Glacier Hub", "ARCHub");
+	local instance = Arcylic.new("Test Hub", "ARCHub");
 	local rootSection = instance:CreateSection("Main Farm");
 
 	-- Section lama -> elemen menempel ke tab induk
