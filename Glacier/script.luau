@@ -1905,12 +1905,12 @@ end
 
 local ThemePresets = {
 	["Banana (Default)"] = {
-		Accent      = Color3.fromRGB(255, 200, 0),
-		Text        = Color3.fromRGB(255, 255, 255),
-		Background   = Color3.fromRGB(10, 11, 12),
-		Outline     = Color3.fromRGB(22, 24, 23),
-		Inline      = Color3.fromRGB(18, 20, 22),
-		Element     = Color3.fromRGB(25, 29, 31),
+	Accent      = Color3.fromRGB(144, 209, 243),
+	Text        = Color3.fromRGB(235, 248, 255),
+	Background  = Color3.fromRGB(12, 22, 29),
+	Outline     = Color3.fromRGB(43, 70, 82),
+	Inline      = Color3.fromRGB(18, 32, 40),
+	Element     = Color3.fromRGB(25, 43, 52),
 	},
 	["Red"] = {
 		Accent      = Color3.fromRGB(255, 80, 80),
