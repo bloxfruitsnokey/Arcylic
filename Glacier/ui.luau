@@ -17,22 +17,22 @@ local hs = game:GetService("HttpService")
 local n = "Acrylic"
 
 local c = {
-    Background = Color3.fromRGB(9, 12, 15),
-    Secondary = Color3.fromRGB(15, 20, 24),
-    Border = Color3.fromRGB(32, 45, 52),
-    Text = Color3.fromRGB(235, 248, 255),
-    TextDark = Color3.fromRGB(105, 130, 142),
-    TextFade = Color3.fromRGB(7, 10, 12),
-    Accent = Color3.fromRGB(144, 209, 243),
+    Background = Color3.fromRGB(12, 12, 12),
+    Secondary = Color3.fromRGB(20, 20, 20),
+    Border = Color3.fromRGB(39, 39, 39),
+    Text = Color3.fromRGB(255, 255, 255),
+    TextDark = Color3.fromRGB(93, 93, 93),
+    TextFade = Color3.fromRGB(9, 9, 9),
+    Accent = Color3.fromRGB(255, 255, 255),
     Toggle = {
-        Enabled = Color3.fromRGB(144, 209, 243),
-        Disabled = Color3.fromRGB(35, 48, 55),
-        Circle = Color3.fromRGB(210, 240, 255)
+        Enabled = Color3.fromRGB(255, 255, 255),
+        Disabled = Color3.fromRGB(32, 32, 32),
+        Circle = Color3.fromRGB(20, 20, 20)
     },
     Notification = {
-        Background = Color3.fromRGB(11, 16, 20),
-        Border = Color3.fromRGB(35, 55, 65),
-        Timer = Color3.fromRGB(144, 209, 243)
+        Background = Color3.fromRGB(11, 11, 11),
+        Border = Color3.fromRGB(26, 26, 26),
+        Timer = Color3.fromRGB(255, 255, 255)
     }
 }
 
@@ -4322,13 +4322,13 @@ end
 
 
 local ThemePresets = {
-	["Banana (Default)"] = {
-		Accent      = Color3.fromRGB(255, 200, 0),
-		Text        = Color3.fromRGB(255, 255, 255),
-		Background   = Color3.fromRGB(10, 11, 12),
-		Outline     = Color3.fromRGB(22, 24, 23),
-		Inline      = Color3.fromRGB(18, 20, 22),
-		Element     = Color3.fromRGB(25, 29, 31),
+	["Default"] = {
+	Accent      = Color3.fromRGB(144, 209, 243),
+	Text        = Color3.fromRGB(235, 248, 255),
+	Background  = Color3.fromRGB(12, 22, 29),
+	Outline     = Color3.fromRGB(43, 70, 82),
+	Inline      = Color3.fromRGB(18, 32, 40),
+	Element     = Color3.fromRGB(25, 43, 52),
 	},
 	["Red"] = {
 		Accent      = Color3.fromRGB(255, 80, 80),
@@ -4391,7 +4391,7 @@ local function ApplyTheme(name)
 	Library:ChangeTheme("Element",     t.Element);
 end;
 
-ApplyTheme("Banana (Default)");
+ApplyTheme("Default");
 
 
 -- Notify shim: keeps original nz_Notify(title, content, duration) calls working
