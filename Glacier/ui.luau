@@ -4314,8 +4314,72 @@ do
 				Icon = cfg.Icon,
 			});
 		end,
-		-- Arcylic tidak mengekspos palet warnanya, jadi ganti tema jadi no-op
-		ChangeTheme = function() end,
+		-- Dynamic theme bridge. Acrylic tidak mengekspos palet secara langsung,
+		-- jadi kita update palette `c` sekaligus warna instance yang sudah dibuat.
+		ChangeTheme = function(_, key, value)
+			if typeof(value) ~= "Color3" then return end
+
+			local oldValue
+			if key == "Accent" then
+				oldValue = c.Accent
+			elseif key == "Text" then
+				oldValue = c.Text
+			elseif key == "Background" then
+				oldValue = c.Background
+			elseif key == "Outline" then
+				oldValue = c.Border
+			elseif key == "Inline" then
+				oldValue = c.Notification.Background
+			elseif key == "Element" then
+				oldValue = c.Secondary
+			else
+				return
+			end
+
+			-- Update existing UI elements that still use the previous palette color.
+			-- Accent is intentionally skipped here because its default value is white,
+			-- which is also the normal text/icon color. New elements will use the new accent.
+			if key ~= "Accent" and instance and instance.screenGui then
+				local function recolor(obj)
+					pcall(function()
+						if obj:IsA("GuiObject") and obj.BackgroundColor3 == oldValue then
+							obj.BackgroundColor3 = value
+						end
+						if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+								if obj.TextColor3 == oldValue then obj.TextColor3 = value end
+						end
+						if obj:IsA("ImageLabel") or obj:IsA("ImageButton") then
+								if obj.ImageColor3 == oldValue then obj.ImageColor3 = value end
+						end
+						if obj:IsA("UIStroke") and obj.Color == oldValue then
+								obj.Color = value
+						end
+					end)
+					for _, child in ipairs(obj:GetChildren()) do
+						recolor(child)
+					end
+				end
+				recolor(instance.screenGui)
+			end
+
+			-- Update the palette so all newly-created components use the theme too.
+			if key == "Accent" then
+				c.Accent = value
+				c.Toggle.Enabled = value
+			elseif key == "Text" then
+				c.Text = value
+				c.Notification.Timer = value
+			elseif key == "Background" then
+				c.Background = value
+			elseif key == "Outline" then
+				c.Border = value
+				c.Notification.Border = value
+			elseif key == "Inline" then
+				c.Notification.Background = value
+			elseif key == "Element" then
+				c.Secondary = value
+			end
+		end,
 	};
 end
 
