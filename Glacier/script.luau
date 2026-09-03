@@ -1766,7 +1766,7 @@ end;
 -- Script ini memakai hirarki lama: Window -> Page -> Section -> X.
 -- Shim di bawah memetakan Page -> Tab (ikon ikut) dan Section -> label header
 -- di dalam tab, supaya ~360 pemanggilan elemen di bawah tidak perlu diubah.
-local Arcylic = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxfruitsnokey/Arcylic/refs/heads/main/ARC/ui.luau"))()
+local Arcylic = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloxfruitsnokey/Arcylic/refs/heads/main/Glacier/ui.luau"))()
 
 local Library, Window;
 do
