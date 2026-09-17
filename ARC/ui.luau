@@ -131,6 +131,10 @@ local function CreateListLayout(parent, padding, sortOrder, direction)
     })
 end
 
+local function IsMobileDevice()
+    return ui.TouchEnabled and not ui.KeyboardEnabled
+end
+
 local function MakeDraggable(frame, handle)
     local dragging = false
     local dragInput, dragStart, startPos
@@ -407,11 +411,13 @@ function Library.new(title, configFolder)
     self._originalHeight = s.v0rtexd.Height
     self._minSize = Vector2.new(s.Minv0rtexd.Width, s.Minv0rtexd.Height)
     self._maxSize = Vector2.new(s.Maxv0rtexd.Width, s.Maxv0rtexd.Height)
+    self._mobileToggle = nil
     self._configElements = {}
     self._autoSave = false
     self._currentConfig = "default"
     self:_CreateMainv0rtexd()
     self:_SetupKeybindListener()
+    self:_SetupMobileSupport()
     CreateNotificationContainer(self.screenGui)
     return self
 end
@@ -512,10 +518,73 @@ function Library:Toggle()
     if self._acrylicBlur then
         self._acrylicBlur:SetEnabled(self._visible)
     end
+    
+    if self._mobileToggle then
+        self._mobileToggle.Visible = not self._visible
+    end
 end
 
 function Library:SetToggleKey(keyCode)
     self._toggleKey = keyCode
+end
+
+function Library:_SetupMobileSupport()
+    local mobileButton = CreateInstance("ImageButton", {
+        Name = "MobileToggle",
+        Image = "rbxassetid://112235310154264",
+        ImageColor3 = c.Text,
+        BackgroundColor3 = c.Background,
+        BackgroundTransparency = 0.1,
+        Position = UDim2.new(0, 15, 0.5, -25),
+        Size = UDim2.new(0, 50, 0, 50),
+        AnchorPoint = Vector2.new(0, 0.5),
+        Visible = false,
+        ZIndex = 999,
+        Parent = self.screenGui
+    })
+    CreateCorner(mobileButton, 25)
+    CreateStroke(mobileButton)
+    
+    local dragging = false
+    local dragStart, startPos
+    
+    mobileButton.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            dragging = true
+            dragStart = input.Position
+            startPos = mobileButton.Position
+        end
+    end)
+    
+    mobileButton.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseButton1 then
+            if dragging then
+                local delta = input.Position - dragStart
+                if delta.Magnitude < 10 then
+                    self:Toggle()
+                end
+            end
+            dragging = false
+        end
+    end)
+    
+    ui.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.Touch or input.UserInputType == Enum.UserInputType.MouseMovement) then
+            local delta = input.Position - dragStart
+            mobileButton.Position = UDim2.new(
+                startPos.X.Scale,
+                startPos.X.Offset + delta.X,
+                startPos.Y.Scale,
+                startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+    
+    self._mobileToggle = mobileButton
+    
+    if IsMobileDevice() then
+        mobileButton.Visible = not self._visible
+    end
 end
 
 function Library:_CreateMainv0rtexd()
@@ -1387,6 +1456,10 @@ function Library._CreateSlider(tab, config)
         )
     end
 
+    task.spawn(function()
+        callback(currentValue)
+    end)
+
     return methods
 end
 
@@ -1554,6 +1627,10 @@ function Library._CreateToggle(tab, config)
             function(value) methods:SetValue(value) end
         )
     end
+    
+    task.spawn(function()
+        callback(enabled)
+    end)
 
     return methods
 end
@@ -1783,6 +1860,10 @@ function Library._CreateDropdown(tab, config)
         )
     end
 
+    task.spawn(function()
+        callback(selected)
+    end)
+
     return methods
 end
 
@@ -1904,6 +1985,10 @@ function Library._CreateKeybind(tab, config, lib)
             function(value) methods:SetKey(value) end
         )
     end
+
+    task.spawn(function()
+        callback(currentKey)
+    end)
 
     return methods
 end
@@ -2191,6 +2276,10 @@ function Library._CreateColorPicker(tab, config)
         )
     end
 
+    task.spawn(function()
+        callback(currentColor)
+    end)
+
     return methods
 end
 
@@ -2328,6 +2417,10 @@ function Library._CreateTextBox(tab, config)
         )
     end
 
+    task.spawn(function()
+        callback(currentText)
+    end)
+
     return methods
 end
 
@@ -2416,4 +2509,4 @@ function Library._CreateConfigSection(tab)
     }
 end
 
-return Library
+return Library  
