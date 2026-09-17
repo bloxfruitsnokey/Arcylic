@@ -13,13 +13,13 @@ local c = {
     Secondary = Color3.fromRGB(20, 20, 20),
     Border = Color3.fromRGB(39, 39, 39),
     Text = Color3.fromRGB(255, 255, 255),
-    TextDark = Color3.fromRGB(93, 93, 93),
-    TextFade = Color3.fromRGB(9, 9, 9),
+    TextDark = Color3.fromRGB(120, 120, 120),
+    TextFade = Color3.fromRGB(93, 93, 93),
     Accent = Color3.fromRGB(255, 255, 255),
     Toggle = {
         Enabled = Color3.fromRGB(255, 255, 255),
-        Disabled = Color3.fromRGB(32, 32, 32),
-        Circle = Color3.fromRGB(20, 20, 20)
+        Disabled = Color3.fromRGB(93, 93, 93),
+        Circle = Color3.fromRGB(50, 50, 50)
     },
     Notification = {
         Background = Color3.fromRGB(11, 11, 11),
