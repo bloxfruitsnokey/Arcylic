@@ -9,8 +9,8 @@ local hs = game:GetService("HttpService")
 local n = "Acrylic"
 
 local c = {
-    Background = Color3.fromRGB(12, 12, 12),
-    Secondary = Color3.fromRGB(20, 20, 20),
+    Background = Color3.fromRGB(255, 12, 12),
+    Secondary = Color3.fromRGB(20, 20, 255),
     Border = Color3.fromRGB(39, 39, 39),
     Text = Color3.fromRGB(255, 255, 255),
     TextDark = Color3.fromRGB(120, 120, 120),
