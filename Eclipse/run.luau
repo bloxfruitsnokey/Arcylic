@@ -12538,3 +12538,74 @@ Window:Notify({
   Icon = "rbxassetid://110535192984297",
   Duration = 5
 })
+
+
+
+-- ===== Floating open/close UI button (Toggle) =====
+do
+	local Players = game:GetService("Players")
+	local UIS = game:GetService("UserInputService")
+	local LocalPlayer = Players.LocalPlayer
+
+	local HideGui = Instance.new("ScreenGui")
+	HideGui.Name = "BananaHub_Toggle"
+	HideGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	HideGui.ResetOnSpawn = false
+	HideGui.IgnoreGuiInset = true
+	pcall(function()
+		HideGui.Parent = (gethui and gethui()) or game:GetService("CoreGui")
+	end)
+	if not HideGui.Parent then
+		HideGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+	end
+
+	local Btn = Instance.new("ImageButton")
+	Btn.Name = "ToggleButton"
+	Btn.Parent = HideGui
+	Btn.BorderSizePixel = 0
+	Btn.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Btn.AnchorPoint = Vector2.new(0, 1)
+	Btn.Image = "rbxassetid://110535192984297"
+	Btn.Size = UDim2.new(0, 50, 0, 50)
+	Btn.Position = UDim2.new(0.01, 0, 0.30, 0)
+	Btn.AutoButtonColor = true
+
+	local corner = Instance.new("UICorner", Btn)
+	corner.CornerRadius = UDim.new(1, 8)
+	local stroke = Instance.new("UIStroke", Btn)
+	stroke.Thickness = 0.6
+	stroke.Color = Color3.fromRGB(55, 60, 65)
+
+	-- Draggable (mouse + touch), only toggles on a real click (not a drag)
+	local dragging, moved, dragStart, startPos
+	Btn.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1
+			or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			moved = false
+			dragStart = input.Position
+			startPos = Btn.Position
+		end
+	end)
+	UIS.InputChanged:Connect(function(input)
+		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement
+			or input.UserInputType == Enum.UserInputType.Touch) then
+			local delta = input.Position - dragStart
+			if delta.Magnitude > 4 then moved = true end
+			Btn.Position = UDim2.new(
+				startPos.X.Scale, startPos.X.Offset + delta.X,
+				startPos.Y.Scale, startPos.Y.Offset + delta.Y
+			)
+		end
+	end)
+	UIS.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1
+			or input.UserInputType == Enum.UserInputType.Touch then
+			if dragging and not moved then
+				-- toggle the Stellar window (show/hide main frame)
+				Window:SetOpen(not Window.IsOpen)
+			end
+			dragging = false
+		end
+	end)
+end
