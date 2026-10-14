@@ -8,25 +8,30 @@ local hs = game:GetService("HttpService")
 
 local n = "Acrylic"
 
+
 local c = {
-    Background = Color3.fromRGB(10, 5, 12),
-    Secondary = Color3.fromRGB(35, 8, 18),
+    Background = Color3.fromRGB(22, 9, 15),
+    Secondary = Color3.fromRGB(35, 13, 22),
     Border = Color3.fromRGB(115, 18, 35),
     Text = Color3.fromRGB(255, 255, 255),
     TextDark = Color3.fromRGB(120, 120, 120),
     TextFade = Color3.fromRGB(93, 93, 93),
+
     Accent = Color3.fromRGB(235, 55, 75),
+
     Toggle = {
         Enabled = Color3.fromRGB(235, 55, 75),
         Disabled = Color3.fromRGB(93, 93, 93),
         Circle = Color3.fromRGB(50, 50, 50)
     },
+
     Notification = {
-        Background = Color3.fromRGB(10, 5, 12),
+        Background = Color3.fromRGB(22, 9, 15),
         Border = Color3.fromRGB(115, 18, 35),
         Timer = Color3.fromRGB(235, 55, 75)
     }
 }
+
 
 local s = {
     v0rtexd = {Width = 690, Height = 446},
