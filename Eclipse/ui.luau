@@ -10,24 +10,24 @@ local n = "Acrylic"
 
 
 local c = {
-    Background = Color3.fromRGB(22, 9, 15),
-    Secondary = Color3.fromRGB(35, 13, 22),
-    Border = Color3.fromRGB(115, 18, 35),
+    Background = Color3.fromRGB(43, 11, 22),
+    Secondary = Color3.fromRGB(64, 16, 31),
+    Border = Color3.fromRGB(115, 18, 38),
     Text = Color3.fromRGB(255, 255, 255),
-    TextDark = Color3.fromRGB(120, 120, 120),
-    TextFade = Color3.fromRGB(93, 93, 93),
+    TextDark = Color3.fromRGB(160, 130, 138),
+    TextFade = Color3.fromRGB(125, 85, 96),
 
     Accent = Color3.fromRGB(235, 55, 75),
 
     Toggle = {
         Enabled = Color3.fromRGB(235, 55, 75),
-        Disabled = Color3.fromRGB(93, 93, 93),
-        Circle = Color3.fromRGB(50, 50, 50)
+        Disabled = Color3.fromRGB(100, 65, 73),
+        Circle = Color3.fromRGB(255, 230, 235)
     },
 
     Notification = {
-        Background = Color3.fromRGB(22, 9, 15),
-        Border = Color3.fromRGB(115, 18, 35),
+        Background = Color3.fromRGB(43, 11, 22),
+        Border = Color3.fromRGB(115, 18, 38),
         Timer = Color3.fromRGB(235, 55, 75)
     }
 }
